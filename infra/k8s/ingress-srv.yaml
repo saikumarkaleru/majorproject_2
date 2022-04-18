@@ -8,8 +8,8 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
 spec:
   rules:
-    - host: major-project.com
-      http:
+    #- host: major-project.com
+    - http:
         paths:
           - path: /api/(auth|users)/?(.*)
             pathType: Prefix
