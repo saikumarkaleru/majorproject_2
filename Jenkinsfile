@@ -57,26 +57,26 @@ pipeline {
         }
         stage('Testing') {
             steps {
-                script {
-                    // Building the Docker image
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                    try {
-                        dockerImage.inside() {
-                            // Extracting the PROJECTDIR environment variable from inside the container def
-                            PROJECTDIR = sh(script: 'echo \$PROJECTDIR', returnStdout: true).trim()
-                            // Copying the project into our workspace
-                            sh "cp -r '$PROJECTDIR' '$WORKSPACE'"
-                            // Running the tests inside the new directory
-                            dir("$WORKSPACE$PROJECTDIR") {
+                // script {
+                //     // Building the Docker image
+                //     dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                //     try {
+                //         dockerImage.inside() {
+                //             // Extracting the PROJECTDIR environment variable from inside the container def
+                //             PROJECTDIR = sh(script: 'echo \$PROJECTDIR', returnStdout: true).trim()
+                //             // Copying the project into our workspace
+                //             sh "cp -r '$PROJECTDIR' '$WORKSPACE'"
+                //             // Running the tests inside the new directory
+                //             dir("$WORKSPACE$PROJECTDIR") {
                                 sh 'chmod -R 777 ./jest.sh'
                                 sh './jest.sh'
-                            }
-                        }
-                    } finally {
-                        // Removing the docker image
-                        sh "docker rmi $registry:$BUILD_NUMBER"
-                    }
-                }
+                //             }
+                //         }
+                //     } finally {
+                //         // Removing the docker image
+                //         sh "docker rmi $registry:$BUILD_NUMBER"
+                //     }
+                // }
             } 
         }
         stage('Deployment') {
