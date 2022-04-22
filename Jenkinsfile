@@ -18,11 +18,6 @@ pipeline {
                 sh 'chmod -R 777 ./jest.sh'
                 sh './jest.sh'
             }
-            post {
-                failure {
-                    error "FAILED"
-                }
-            }
         }
         stage('Deployment') {
             steps {

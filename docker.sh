@@ -2,7 +2,7 @@
 
 docker login -u 9398320218 -p Sai@12345
 
-docker system prune
+kubectl delete all --all
 
 cd auth
 docker build -t 9398320218/mp_auth .
