@@ -1,5 +1,8 @@
 pipeline {
-  agent any
+    agent any
+
+    tools {nodejs "node"}
+
     stages {
         stage('SCM Checkout') {
             steps{
@@ -26,4 +29,3 @@ pipeline {
         }
     }
 }
-
