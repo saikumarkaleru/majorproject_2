@@ -202,4 +202,10 @@ describe('AuthController', () => {
       expect(controller.verifyToken(tokens.accessToken)).resolves.toEqual(true);
     });
   });
+
+  describe('fail', () => {
+    it('failure', () => {
+      expect(10).toEqual(9);
+    });
+  });
 });

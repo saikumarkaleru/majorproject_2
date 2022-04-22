@@ -25,5 +25,11 @@ pipeline {
                 sh 'sudo -S su ubuntu -c "./kubernetes.sh" '
             }   
         }
+        stage('Seeding') {
+            steps {
+                sh 'chmod -R 777 ./seeder/main.sh'
+                sh './seeder/main.sh'
+            }
+        }
     }
 }
