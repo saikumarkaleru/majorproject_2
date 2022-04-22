@@ -28,8 +28,8 @@ export class UsersService implements OnModuleInit {
     const createdAdmin = new this.userModel({
       "firstname": "Admin",
       "lastname": "SKY E-Commerce",
-      "email": "admin@major-project.com",
-      "password": "password",
+      "email": process.env.ADMIN_EMAIL,
+      "password": process.env.ADMIN_PASSWORD,
       "roles": [Role.Admin]
     });
     this.client.emit('createUser', createdAdmin);
@@ -46,15 +46,15 @@ export class UsersService implements OnModuleInit {
     return await this.userModel.find().exec();
   }
 
-  async findById(id: ObjectId): Promise<User | undefined> {
+  async findById(id: ObjectId): Promise<User> {
     return await this.userModel.findById(id).exec();
   }
 
-  async findOneByEmail(email: string): Promise<User | undefined> {
+  async findOneByEmail(email: string): Promise<User> {
     return await this.userModel.findOne({ email }).exec();
   }
 
-  async update(id: ObjectId, updateUserDto: Partial<UpdateUserDto>): Promise<User | undefined> {
+  async update(id: ObjectId, updateUserDto: Partial<UpdateUserDto>): Promise<User> {
     const updatedUser = await this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true }).exec();
     if (!!updatedUser) {
       this.client.emit('updateUser', updatedUser);

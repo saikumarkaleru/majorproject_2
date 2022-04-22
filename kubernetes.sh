@@ -20,16 +20,17 @@ kubectl create secret generic jwt-access-token-secret --from-literal=JWT_ACCESS_
 kubectl create secret generic jwt-access-token-expiration-time --from-literal=JWT_ACCESS_TOKEN_EXPIRATION_TIME=1h
 kubectl create secret generic jwt-refresh-token-secret --from-literal=JWT_REFRESH_TOKEN_SECRET=majorprojectsecret
 kubectl create secret generic jwt-refresh-token-expiration-time --from-literal=JWT_REFRESH_TOKEN_EXPIRATION_TIME=7d
+kubectl create secret generic admin-email --from-literal=ADMIN_EMAIL=admin@sky-ecommerce.com
+kubectl create secret generic admin-password --from-literal=ADMIN_PASSWORD=SKY@1234
 
 cd infra/k8s
 
 kubectl apply -f auth-mongo.yaml
 kubectl apply -f auth.yaml
 
-
 kubectl apply -f products-mongo.yaml
-
 kubectl apply -f products.yaml
+
 kubectl apply -f orders-mongo.yaml
 kubectl apply -f orders.yaml
 
