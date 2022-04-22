@@ -2,7 +2,7 @@
 
 source .env
 
-BASE_URL='http://http://54.242.208.118/api'
+BASE_URL='http://54.242.208.118/api'
 
 ACCESS_TOKEN=$(curl --location --request POST "${BASE_URL}/auth/signin" \
 --header 'Content-Type: application/json' \

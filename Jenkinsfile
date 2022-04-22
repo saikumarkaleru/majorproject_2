@@ -17,19 +17,21 @@ pipeline {
             steps {
                 sh 'chmod -R 777 ./jest.sh'
                 sh './jest.sh'
-            } 
+            }
+            post {
+                succes {
+
+                }
+                failure {
+                    error "FAILED"
+                }
+            }
         }
         stage('Deployment') {
             steps {
                 sh 'chmod -R 777 ./kubernetes.sh'
                 sh 'sudo -S su ubuntu -c "./kubernetes.sh" '
             }   
-        }
-        stage('Seeding') {
-            steps {
-                sh 'chmod -R 777 ./seeder/main.sh'
-                sh './seeder/main.sh'
-            }
         }
     }
 }
