@@ -19,8 +19,7 @@ pipeline {
                 sh './jest.sh'
             }
             post {
-                succes {
-
+                success {
                 }
                 failure {
                     error "FAILED"
