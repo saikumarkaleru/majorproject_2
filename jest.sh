@@ -2,15 +2,18 @@
 
 
 cd auth
+npm install
 npm run test
 cd ..
 
 
 cd products
+npm install
 npm run test
 cd ..
 
 
 cd orders
+npm install
 npm run test
 cd ..
